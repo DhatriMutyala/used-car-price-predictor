@@ -2,9 +2,15 @@ from flask import Flask, render_template, request
 import pandas as pd
 import pickle
 import numpy as np
+import os
+import subprocess
 
 app = Flask(__name__)
 
+
+if not os.path.exists("models/car_price_model.pkl"):
+    print("Model not found. Training model...")
+    subprocess.run(["python", "train_model.py"])
 
 model = pickle.load(open("model.pkl","rb"))
 brand_encoder = pickle.load(open("brand_encoder.pkl","rb"))
