@@ -13,9 +13,9 @@ if not os.path.exists("models/car_price_model.pkl"):
     print("Model not found. Training model...")
     subprocess.run(["python", "train_model.py"])
 
-model = joblib.load("models/car_price_model.pkl")
-brand_encoder = pickle.load(open("brand_encoder.pkl","rb"))
-model_encoder = pickle.load(open("model_encoder.pkl","rb"))
+model = pickle.load(open("models/car_price_model.pkl","rb"))
+brand_encoder = pickle.load(open("models/brand_encoder.pkl","rb"))
+model_encoder = pickle.load(open("models/model_encoder.pkl","rb"))
 
 
 df = pd.read_csv("data/cardekho_dataset.csv")
