@@ -4,6 +4,7 @@ import pickle
 import numpy as np
 import os
 import subprocess
+import joblib
 
 app = Flask(__name__)
 
@@ -12,7 +13,7 @@ if not os.path.exists("models/car_price_model.pkl"):
     print("Model not found. Training model...")
     subprocess.run(["python", "train_model.py"])
 
-model = pickle.load(open("model.pkl","rb"))
+model = joblib.load("models/car_price_model.pkl")
 brand_encoder = pickle.load(open("brand_encoder.pkl","rb"))
 model_encoder = pickle.load(open("model_encoder.pkl","rb"))
 
